@@ -1,26 +1,26 @@
 'use strict';
 
 function createCalendar(id, year, month) {
-    let elem = document.getElementById(id);
+    const elem = document.querySelector(`#${id}`);
     const monthFromZero = month - 1;     
-    let dateForTable = new Date(year, monthFromZero);
+    const date = new Date(year, monthFromZero);
     let table = '<table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
     
-    for (let i = 0; i < getDay(dateForTable); i++) {
+    for (let i = 0; i < getDay(date); i++) {
       table += '<td></td>';
     }
    
-    while (dateForTable.getMonth() == monthFromZero) {
-      table += `<td> ${dateForTable.getDate()} </td>`;
+    while (date.getMonth() == monthFromZero) {
+      table += `<td> ${date.getDate()} </td>`;
       
-      if (getDay(dateForTable) % 7 == 6) { 
+      if (getDay(date) % 7 == 6) { 
         table += '</tr><tr>';
       }
-      dateForTable.setDate(dateForTable.getDate() + 1);
+      date.setDate(date.getDate() + 1);
     }
     
-    if (getDay(dateForTable) !== 0) {
-      for (let i = getDay(dateForTable); i < 7; i++) {
+    if (getDay(date) !== 0) {
+      for (let i = getDay(date); i < 7; i++) {
         table += '<td></td>';
       }
     }
